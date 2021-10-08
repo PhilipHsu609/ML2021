@@ -1,5 +1,6 @@
 #include "PLA.h"
 
+#include <iostream>
 Perceptron::Perceptron(std::vector<std::vector<double>> x, std::vector<int> y)
     : x{x},
       y{y},
@@ -10,6 +11,7 @@ Perceptron::Perceptron(std::vector<std::vector<double>> x, std::vector<int> y)
 }
 
 void Perceptron::initWeights() {
+    w.clear();
     w.resize(n, 0);
 }
 
@@ -22,8 +24,11 @@ int Perceptron::sign(double val) {
 }
 
 void Perceptron::setSeed(int seed) {
-    mersenne.seed(static_cast<std::mt19937::result_type>(
-        seed == 0 ? std::time(nullptr) : seed));
+    if (seed == 0) {
+        seed = static_cast<int>(
+            std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    }
+    mersenne.seed(static_cast<std::mt19937::result_type>(seed));
 }
 
 int Perceptron::randomPick() {

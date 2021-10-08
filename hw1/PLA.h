@@ -1,6 +1,7 @@
 #ifndef PLA_H
 #define PLA_H
 
+#include <chrono>
 #include <ctime>
 #include <random>
 #include <string>
