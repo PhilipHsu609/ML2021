@@ -7,7 +7,7 @@
 
 #include "PLA.h"
 
-const std::string trainingData{"./hw1_train.dat"};
+const std::string trainingDataPath{"./hw1_train.dat"};
 
 std::vector<double> split(const std::string &str) {
     std::stringstream ss{str};
@@ -48,6 +48,7 @@ void readDat(const std::string &filename, std::vector<std::vector<double>> &x, s
 void Q13(std::vector<std::vector<double>> &x) {
     std::cout << " -- Question 13 -- " << std::endl;
 }
+
 void Q14(std::vector<std::vector<double>> &x) {
     std::cout << " -- Question 14 -- " << std::endl;
     for (auto &example : x) {
@@ -56,6 +57,7 @@ void Q14(std::vector<std::vector<double>> &x) {
         }
     }
 }
+
 void Q15(std::vector<std::vector<double>> &x) {
     std::cout << " -- Question 15 -- " << std::endl;
     for (auto &example : x) {
@@ -68,6 +70,7 @@ void Q15(std::vector<std::vector<double>> &x) {
         }
     }
 }
+
 void Q16(std::vector<std::vector<double>> &x) {
     std::cout << " -- Question 16 -- " << std::endl;
     for (auto &example : x) {
@@ -79,7 +82,7 @@ void report(std::function<void(std::vector<std::vector<double>> &)> f) {
     std::vector<std::vector<double>> x;
     std::vector<int> y;
 
-    readDat(trainingData, x, y);
+    readDat(trainingDataPath, x, y);
 
     // Modifying training data to meet the question's requirements.
     f(x);
@@ -103,7 +106,7 @@ void report(std::function<void(std::vector<std::vector<double>> &)> f) {
 
 void usage() {
     std::cout << "Usage:" << std::endl;
-    std::cout << "    hw1.out [13|14|15|16]" << std::endl;
+    std::cout << "    ./hw1.out [13|14|15|16]" << std::endl;
     std::cout << std::endl;
 }
 

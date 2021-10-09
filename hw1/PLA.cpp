@@ -1,6 +1,5 @@
 #include "PLA.h"
 
-#include <iostream>
 Perceptron::Perceptron(std::vector<std::vector<double>> x, std::vector<int> y)
     : x{x},
       y{y},
@@ -37,7 +36,7 @@ int Perceptron::randomPick() {
 }
 
 double Perceptron::f(int id) {
-    double sum = 0;
+    double sum = 0.0;
     for (int i = 0; i < n; i++) {
         sum += x[id][i] * w[i];
     }
@@ -45,11 +44,11 @@ double Perceptron::f(int id) {
 }
 
 double Perceptron::getWeightsNormSquare() {
-    double sum = 0;
+    double norm2 = 0.0;
     for (int i = 0; i < n; i++) {
-        sum += w[i] * w[i];
+        norm2 += w[i] * w[i];
     }
-    return sum;
+    return norm2;
 }
 
 void Perceptron::fit() {
