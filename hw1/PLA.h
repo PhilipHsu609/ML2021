@@ -14,11 +14,11 @@ class Perceptron {
     void initWeights();
     void setSeed(int seed = 0);
     void fit();
-    int randomPick();
     double getWeightsNormSquare();
     double accuracyRate();
 
    private:
+    int randomPick();
     int sign(double val);
     double f(int id);
     std::mt19937 mersenne;  // mersenne twister engine
