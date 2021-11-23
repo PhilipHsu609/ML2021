@@ -74,10 +74,6 @@ Eigen::MatrixXd lessFeatures(const Eigen::MatrixXd &X, int n) {
 }
 
 Eigen::MatrixXd randomFeatures(const Eigen::MatrixXd &X, int n, int seed) {
-    if (seed == 0) {
-        seed = static_cast<int>(
-            std::chrono::high_resolution_clock::now().time_since_epoch().count());
-    }
     std::mt19937 mersene(seed);
 
     Eigen::MatrixXd features(X.rows(), n + 1);
@@ -85,12 +81,10 @@ Eigen::MatrixXd randomFeatures(const Eigen::MatrixXd &X, int n, int seed) {
 
     std::vector<int> choice(X.cols());
     std::iota(begin(choice), end(choice), 0);
+    std::shuffle(begin(choice), end(choice), mersene);
 
-    for (int i = 0; i < X.rows(); i++) {
-        std::shuffle(begin(choice), end(choice), mersene);
-        for (int j = 0; j < n; j++) {
-            features(i, j + 1) = X(i, choice[j]);
-        }
+    for (int i = 1; i <= n; i++) {
+        features.col(i) = X.col(choice[i - 1]);
     }
 
     return features;

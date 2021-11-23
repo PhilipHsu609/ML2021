@@ -124,8 +124,11 @@ void Q16(Eigen::MatrixXd &X_train, Eigen::VectorXd &y_train, Eigen::MatrixXd &X_
 
     double avg = 0;
     for (int i = 0; i < 200; i++) {
-        auto Z_train{randomFeatures(X_train, 5)};
-        auto Z_test{randomFeatures(X_test, 5)};
+        int seed = static_cast<int>(
+            std::chrono::high_resolution_clock::now().time_since_epoch().count());
+
+        auto Z_train{randomFeatures(X_train, 5, seed)};
+        auto Z_test{randomFeatures(X_test, 5, seed)};
 
         l.fit(Z_train, y_train);
         double ein{ErrorMeasure::zeroOneError(l.predict(Z_train), y_train)};
