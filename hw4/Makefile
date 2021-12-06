@@ -1,7 +1,7 @@
 objects = main.o Features.o
 EIGEN_PATH = /usr/local/include/eigen3
 
-hw4.out: $(objects)
+transform.out: $(objects)
 	clang++ $(objects) -o $@
 
 $(objects): %.o: %.cpp

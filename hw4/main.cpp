@@ -68,8 +68,6 @@ int main(int argc, char **argv) {
     auto y{data.col(data.cols() - 1)};
     auto output{polynomialFeatures(X, 3)};
 
-    // output.conservativeResize(output.rows(), output.cols() + 1);
-    // output.col(output.cols() - 1) = y;
     std::ofstream outFile{outputFileName, std::ios::out};
 
     for (int i = 0; i < output.rows(); i++) {
@@ -80,11 +78,7 @@ int main(int argc, char **argv) {
         outFile << '\n';
     }
 
-    // Eigen::IOFormat fmt(Eigen::StreamPrecision, Eigen::DontAlignCols, " ", "\n");
-    // outFile << output.format(fmt) << std::endl;
-
     outFile.close();
-
     std::cout << "Transformed size: (" << output.rows() << ", " << output.cols() << ").\n";
 
     return 0;
